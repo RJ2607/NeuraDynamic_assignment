@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/Models/productModel.dart';
+import 'package:flutter_assignment/Views/Product%20details/productPage.dart';
+import 'package:get/get.dart';
+
+import '../../../Controllers/productControllers.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
+  ProductCard({
     super.key,
     required this.product,
   });
 
   final ProductModel product;
 
+  ProductControllers _productControllers = Get.put(ProductControllers());
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        
+        _productControllers.selectedProduct.value = product;
+        Get.to(() => ProductPage());
       },
       child: Container(
-        margin: EdgeInsets.only(
-            bottom:
-                MediaQuery.of(context).size.height * 0.02),
+        margin:
+            EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.02),
         height: MediaQuery.of(context).size.height * 0.2,
         width: double.infinity,
         decoration: BoxDecoration(
@@ -37,8 +43,7 @@ class ProductCard extends StatelessWidget {
           children: [
             Container(
               height: double.infinity,
-              width:
-                  MediaQuery.of(context).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.3,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(product.images![0]),
@@ -54,16 +59,12 @@ class ProductCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
-                      mainAxisAlignment:
-                          MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
                           product.title!,
