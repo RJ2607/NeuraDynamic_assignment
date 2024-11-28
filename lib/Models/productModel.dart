@@ -29,21 +29,21 @@ class ProductModel {
     creationAt = json['creationAt'];
     updatedAt = json['updatedAt'];
     category = json['category'] != null
-        ? new Category.fromJson(json['category'])
+        ? Category.fromJson(json['category'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['price'] = this.price;
-    data['description'] = this.description;
-    data['images'] = this.images;
-    data['creationAt'] = this.creationAt;
-    data['updatedAt'] = this.updatedAt;
-    if (this.category != null) {
-      data['category'] = this.category!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['price'] = price;
+    data['description'] = description;
+    data['images'] = images;
+    data['creationAt'] = creationAt;
+    data['updatedAt'] = updatedAt;
+    if (category != null) {
+      data['category'] = category!.toJson();
     }
     return data;
   }

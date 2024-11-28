@@ -13,7 +13,7 @@ class ProductCard extends StatelessWidget {
 
   final ProductModel product;
 
-  ProductControllers _productControllers = Get.put(ProductControllers());
+  final ProductControllers _productControllers = Get.put(ProductControllers());
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class ProductCard extends StatelessWidget {
                   image: NetworkImage(product.images![0]),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   bottomLeft: Radius.circular(10),
                 ),
@@ -68,7 +68,7 @@ class ProductCard extends StatelessWidget {
                       children: [
                         Text(
                           product.title!,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -77,7 +77,7 @@ class ProductCard extends StatelessWidget {
                           product.description!,
                           softWrap: true,
                           maxLines: 3,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14,
                           ),
                         ),
@@ -85,7 +85,7 @@ class ProductCard extends StatelessWidget {
                     ),
                     Text(
                       '${product.price} \$',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),

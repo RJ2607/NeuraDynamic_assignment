@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/Controllers/productControllers.dart';
 import 'package:flutter_assignment/Models/productModel.dart';
-import 'package:flutter_assignment/Views/Home/widgets/category_button.dart';
+import 'package:flutter_assignment/Views/Home/widgets/categoryButton.dart';
 import 'package:flutter_assignment/Views/Home/widgets/productCard.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
