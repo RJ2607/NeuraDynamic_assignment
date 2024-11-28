@@ -13,6 +13,8 @@ class ProductControllers extends GetxController {
 
   Rx<ProductModel> selectedProduct = ProductModel().obs;
 
+  RxString selectedCategory = 'clothes'.obs;
+
   Future<List<ProductModel>> fetchProducts() async {
     try {
       isLoading.value = true;
