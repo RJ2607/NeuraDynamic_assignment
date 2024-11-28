@@ -6,17 +6,19 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ProductControllers extends GetxController {
-  String apiLink = 'https://api.escuelajs.co';
-  String endPoint = '/api/v1/products';
+  final String baseUrl = 'api.escuelajs.co';
+  final String endPoint = '/api/v1/products';
 
-  RxBool isLoading = false.obs;
+  RxBool isLoading = true.obs;
+
+  Rx<ProductModel> selectedProduct = ProductModel().obs;
 
   Future<List<ProductModel>> fetchProducts() async {
     try {
       isLoading.value = true;
 
       //Uri contains the URL and the endpoint
-      Uri url = Uri.https(apiLink, endPoint);
+      Uri url = Uri.https(baseUrl, endPoint);
       final http.Response response = await http.get(url);
       log('success');
       if (response.statusCode == 200) {
