@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/Controllers/productControllers.dart';
 import 'package:flutter_assignment/Models/productModel.dart';
+import 'package:flutter_assignment/Views/Home/widgets/category_button.dart';
 import 'package:flutter_assignment/Views/Home/widgets/productCard.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  ProductControllers _productControllers = Get.put(ProductControllers());
+  final ProductControllers _productControllers = Get.put(ProductControllers());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text(
+          'Home',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -27,7 +34,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Categories',
                 style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               ),
@@ -62,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              Text(
+              const Text(
                 'Recent Products',
                 style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               ),
@@ -74,6 +81,15 @@ class _HomePageState extends State<HomePage> {
                   builder: (context, snapshot) {
                     if (_productControllers.isLoading.value) {
                       return Shimmer(
+                        gradient: const LinearGradient(
+                          colors: [
+                            Colors.white,
+                            Colors.grey,
+                            Colors.white,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                         child: Container(
                           margin: EdgeInsets.only(
                               bottom:
@@ -93,15 +109,6 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.white,
-                            Colors.grey,
-                            Colors.white,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
                       );
                     } else if (snapshot.hasError) {
                       return Center(
@@ -119,46 +126,6 @@ class _HomePageState extends State<HomePage> {
                     }
                   }),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CategoryButton extends StatelessWidget {
-  String imageUrl;
-  String title;
-  CategoryButton({
-    required this.imageUrl,
-    required this.title,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Container(
-        margin:
-            EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.02),
-        height: MediaQuery.of(context).size.height * 0.1,
-        width: MediaQuery.of(context).size.width * 0.225,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(imageUrl),
-            fit: BoxFit.cover,
-          ),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Text(
-            title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
           ),
         ),
       ),
